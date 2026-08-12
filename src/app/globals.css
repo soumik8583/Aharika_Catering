@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-playfair: "Playfair Display", Georgia, serif;
+  --font-inter: "Inter", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: theme("colors.cream");
+  color: theme("colors.charcoal");
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white shadow-soft hover:bg-brand-dark hover:shadow-card;
+  }
+  .btn-gold {
+    @apply btn bg-gold text-charcoal shadow-soft hover:bg-gold-dark hover:text-white;
+  }
+  .btn-outline {
+    @apply btn border-2 border-brand text-brand hover:bg-brand hover:text-white;
+  }
+  .btn-ghost {
+    @apply btn text-brand hover:bg-brand/10;
+  }
+
+  .section {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+  .section-title {
+    @apply font-serif text-3xl font-bold text-brand sm:text-4xl lg:text-5xl;
+  }
+  .section-subtitle {
+    @apply mx-auto mt-3 max-w-2xl text-base text-charcoal/70;
+  }
+
+  .card {
+    @apply rounded-2xl bg-white shadow-card ring-1 ring-black/5;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-charcoal/15 bg-white px-4 py-2.5 text-sm text-charcoal outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-charcoal/80;
+  }
+  .req::after {
+    content: " *";
+    @apply text-brand;
+  }
+
+  /* Horizontal scroll rows */
+  .scroll-row {
+    @apply flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory;
+    scrollbar-width: thin;
+  }
+  .scroll-row::-webkit-scrollbar {
+    height: 8px;
+  }
+  .scroll-row::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-brand/30;
+  }
+}
+
+/* Hide number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
