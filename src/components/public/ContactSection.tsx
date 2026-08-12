@@ -109,7 +109,7 @@ export default function ContactSection() {
                 </a>
               </p>
               <a
-                href="https://maps.app.goo.gl/vrg8dQZ7J3ZYmwhk7"
+                href="https://maps.app.goo.gl/C3Zh5fEdCxueeBsL7"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold mt-4"
@@ -119,7 +119,7 @@ export default function ContactSection() {
             </div>
             <iframe
               title="Aaharika location map"
-              src="https://www.google.com/maps?q=Kolkata,West+Bengal,India&output=embed"
+              src="https://www.google.com/maps?q=22.6359597,88.4053198&z=16&output=embed"
               className="h-72 w-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

@@ -49,7 +49,7 @@ export default function Footer() {
             <li>
               <a
                 className="hover:text-gold"
-                href="https://maps.app.goo.gl/vrg8dQZ7J3ZYmwhk7"
+                href="https://maps.app.goo.gl/C3Zh5fEdCxueeBsL7"
                 target="_blank"
                 rel="noopener noreferrer"
               >
