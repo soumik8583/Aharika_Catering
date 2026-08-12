@@ -33,13 +33,13 @@ export async function POST(req: Request) {
     const body = await req.json().catch(() => null);
     if (!body) return fail("Invalid request body", 400);
 
-    const { dishName, mainIngredients, sourceOfDish, isVegetarian, masalasUsed, imageURL, category, description, isActive } = body;
+    const { dishName, mainIngredients, sourceOfDish, isVegetarian, masalasUsed, imageURL, category, description, price, isActive } = body;
     if (!isNonEmpty(dishName, 2, 150)) return fail("Dish name is required.", 400);
 
     const code = await nextDishCode();
     const res = await db.execute({
-      sql: `INSERT INTO Dish (DishCode, DishName, MainIngredients, SourceOfDish, IsVegetarian, MasalasUsed, ImageURL, Category, Description, IsActive)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      sql: `INSERT INTO Dish (DishCode, DishName, MainIngredients, SourceOfDish, IsVegetarian, MasalasUsed, ImageURL, Category, Description, Price, IsActive)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       args: [
         code,
         dishName.trim(),
@@ -50,6 +50,7 @@ export async function POST(req: Request) {
         isNonEmpty(imageURL) ? imageURL.trim() : null,
         isNonEmpty(category) ? category.trim() : null,
         isNonEmpty(description) ? description.trim() : null,
+        price != null && price !== "" ? Number(price) : null,
         isActive === false ? 0 : 1,
       ],
     });

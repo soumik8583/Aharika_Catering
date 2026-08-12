@@ -19,6 +19,7 @@ const empty = {
   imageURL: "",
   category: "Main Course",
   description: "",
+  price: "",
   isActive: true,
 };
 
@@ -58,6 +59,7 @@ export default function AdminDishesPage() {
       imageURL: d.ImageURL || "",
       category: d.Category || "Main Course",
       description: d.Description || "",
+      price: d.Price != null ? String(d.Price) : "",
       isActive: d.IsActive === 1,
     });
     setModal(true);
@@ -121,6 +123,7 @@ export default function AdminDishesPage() {
                 <th className="px-4 py-3">Code</th>
                 <th className="px-4 py-3">Name</th>
                 <th className="px-4 py-3">Category</th>
+                <th className="px-4 py-3">Price</th>
                 <th className="px-4 py-3">Type</th>
                 <th className="px-4 py-3">Status</th>
                 <th className="px-4 py-3 text-right">Actions</th>
@@ -132,6 +135,7 @@ export default function AdminDishesPage() {
                   <td className="px-4 py-3 font-mono text-xs text-charcoal/60">{d.DishCode}</td>
                   <td className="px-4 py-3 font-medium text-charcoal">{d.DishName}</td>
                   <td className="px-4 py-3 text-charcoal/70">{d.Category}</td>
+                  <td className="px-4 py-3 text-charcoal/70">{d.Price != null ? `₹${d.Price}` : "—"}</td>
                   <td className="px-4 py-3"><VegBadge veg={d.IsVegetarian === 1} /></td>
                   <td className="px-4 py-3">
                     <span className={`rounded-full px-2 py-0.5 text-xs ${d.IsActive ? "bg-emerald-100 text-emerald-700" : "bg-slate-200 text-slate-600"}`}>
@@ -181,9 +185,15 @@ export default function AdminDishesPage() {
               <input className="input" value={form.masalasUsed} onChange={(e) => setForm((f) => ({ ...f, masalasUsed: e.target.value }))} />
             </div>
           </div>
-          <div>
-            <label className="label">Image URL</label>
-            <input className="input" value={form.imageURL} onChange={(e) => setForm((f) => ({ ...f, imageURL: e.target.value }))} />
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label className="label">Price (₹)</label>
+              <input type="number" min={0} step="1" className="input" value={form.price} onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))} placeholder="Optional — e.g. 250" />
+            </div>
+            <div>
+              <label className="label">Image URL</label>
+              <input className="input" value={form.imageURL} onChange={(e) => setForm((f) => ({ ...f, imageURL: e.target.value }))} />
+            </div>
           </div>
           <div>
             <label className="label">Description</label>

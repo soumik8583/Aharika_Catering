@@ -25,11 +25,11 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
     const body = await req.json().catch(() => null);
     if (!body) return fail("Invalid request body", 400);
 
-    const { dishName, mainIngredients, sourceOfDish, isVegetarian, masalasUsed, imageURL, category, description, isActive } = body;
+    const { dishName, mainIngredients, sourceOfDish, isVegetarian, masalasUsed, imageURL, category, description, price, isActive } = body;
     if (!isNonEmpty(dishName, 2, 150)) return fail("Dish name is required.", 400);
 
     await db.execute({
-      sql: `UPDATE Dish SET DishName = ?, MainIngredients = ?, SourceOfDish = ?, IsVegetarian = ?, MasalasUsed = ?, ImageURL = ?, Category = ?, Description = ?, IsActive = ?, UpdatedAt = datetime('now')
+      sql: `UPDATE Dish SET DishName = ?, MainIngredients = ?, SourceOfDish = ?, IsVegetarian = ?, MasalasUsed = ?, ImageURL = ?, Category = ?, Description = ?, Price = ?, IsActive = ?, UpdatedAt = datetime('now')
             WHERE DishID = ?`,
       args: [
         dishName.trim(),
@@ -40,6 +40,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
         isNonEmpty(imageURL) ? imageURL.trim() : null,
         isNonEmpty(category) ? category.trim() : null,
         isNonEmpty(description) ? description.trim() : null,
+        price != null && price !== "" ? Number(price) : null,
         isActive === false ? 0 : 1,
         id,
       ],

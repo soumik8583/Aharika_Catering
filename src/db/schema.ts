@@ -27,6 +27,7 @@ export const schemaStatements: string[] = [
     ImageURL TEXT,
     Category TEXT,
     Description TEXT,
+    Price REAL,
     IsActive INTEGER NOT NULL DEFAULT 1,
     CreatedAt TEXT NOT NULL DEFAULT (datetime('now')),
     UpdatedAt TEXT NOT NULL DEFAULT (datetime('now'))

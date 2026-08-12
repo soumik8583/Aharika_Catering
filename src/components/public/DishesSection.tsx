@@ -88,6 +88,9 @@ export default function DishesSection() {
                     <p className="mt-2 line-clamp-2 text-xs text-charcoal/60">
                       {d.MainIngredients}
                     </p>
+                    {d.Price != null && (
+                      <p className="mt-2 font-serif text-lg font-bold text-brand">₹{d.Price}</p>
+                    )}
                     <button
                       onClick={() => setDetail(d)}
                       className="btn-ghost mt-3 w-full justify-center py-1.5 text-xs"
@@ -119,6 +122,9 @@ export default function DishesSection() {
               <span className="font-medium">{detail.IsVegetarian === 1 ? "Vegetarian" : "Non-Vegetarian"}</span>
               <span className="ml-auto rounded-full bg-brand/10 px-2 py-0.5 text-xs text-brand">{detail.Category}</span>
             </div>
+            {detail.Price != null && (
+              <p className="font-serif text-xl font-bold text-brand">₹{detail.Price}</p>
+            )}
             {detail.Description && <p className="text-sm text-charcoal/75">{detail.Description}</p>}
             <Detail label="Cuisine / Source" value={detail.SourceOfDish} />
             <Detail label="Main Ingredients" value={detail.MainIngredients} />

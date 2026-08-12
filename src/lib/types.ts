@@ -9,6 +9,7 @@ export type Dish = {
   ImageURL: string | null;
   Category: string | null;
   Description: string | null;
+  Price: number | null;
   IsActive: number;
   CreatedAt: string;
   UpdatedAt: string;
